@@ -3,6 +3,7 @@ import json
 import boto3
 import requests
 from datetime import datetime
+from botocore.exceptions import ClientError
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -23,7 +24,13 @@ class WeatherDashboard:
         except:
             print(f"Creating bucket {self.bucket_name}")
         try:
-            # Simpler creation for us-east-1
+            if self.region == "us-east-1":
+                self.s3_client.create_bucket(Bucket=self.bucket_name)
+            else:
+                self.s3_client.create_bucket(
+                    Bucket=self.bucket_name,
+                    CreateBucketConfiguration={'LocationConstraint': self.region}
+                )
             self.s3_client.create_bucket(Bucket=self.bucket_name)
             print(f"Successfully created bucket {self.bucket_name}")
         except Exception as e:
@@ -74,7 +81,7 @@ def main():
     # Create bucket if needed
     dashboard.create_bucket_if_not_exists()
     
-    cities = ["Philadelphia", "Seattle", "New York"]
+    cities = ["Philadelphia", "Seattle", "New York", "Atlanta", "Natchez"]
     
     for city in cities:
         print(f"\nFetching weather for {city}...")
