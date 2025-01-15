@@ -92,8 +92,23 @@ echo "requests==2.28.2" >> requirements.txt
 ## Usage
 To run the application, execute the following command:
 ```
-python src/main.py
+python src/weather_dashboard.py
 ```
+
+## To access the app on http://localhost:5000
+
+you'll need to have a web server running on your local machine. The specific steps will depend on the web server you're using.
+
+Here are some common options:
+
+Python: If you're using a Python web framework like Flask or Django, you can run the server locally by running the appropriate command from the terminal.
+
+Node.js: If you're using Node.js, you can run the server locally using the node command.
+
+Apache or Nginx: If you're using a traditional web server like Apache or Nginx, you'll need to configure it to serve your app from port 5000.
+
+Once you have a web server running on your local machine, you can open a web browser and navigate to http://localhost:5000 to access the app.
+
 Visit `http://localhost:5000` in your web browser to access the app.
 
 ## Contributing
