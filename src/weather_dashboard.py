@@ -38,7 +38,7 @@ class WeatherDashboard:
 
     def fetch_weather(self, city):
         """Fetch weather data from OpenWeather API"""
-        base_url = "http://api.openweathermap.org/data/2.5/weather"
+        base_url = "https://api.openweathermap.org/data/2.5/weather"
         params = {
             "q": city,
             "appid": self.api_key,
@@ -49,6 +49,7 @@ class WeatherDashboard:
             response = requests.get(base_url, params=params)
             response.raise_for_status()
             return response.json()
+
         except requests.exceptions.RequestException as e:
             print(f"Error fetching weather data: {e}")
             return None
